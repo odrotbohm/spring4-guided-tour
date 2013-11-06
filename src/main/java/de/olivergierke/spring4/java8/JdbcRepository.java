@@ -41,7 +41,7 @@ class JdbcRepository {
 	public void executeQueryWithPreparedStatementAndRowMapper() {
 
 		template.query("SELECT name, age FROM person WHERE dep = ?",
-			ps -> ps.setString(1, "Sales"),
+                       ps -> ps.setString(1, "Sales"),
 			(rs, rowNum) -> new Person(rs.getString(1), rs.getString(2)));
 
 		// VS.
@@ -56,7 +56,7 @@ class JdbcRepository {
 			new RowMapper<Person>() {
 				@Override
 				public Person mapRow(ResultSet resultSet, int i) throws SQLException {
-					return new Person(rs.getString(1), rs.getString(2));
+					return new Person(resultSet.getString(1), resultSet.getString(2));
 				}
 			}
 		);
