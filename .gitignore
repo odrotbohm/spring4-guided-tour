@@ -1,0 +1,8 @@
+target/
+.settings/
+.project
+.classpath
+.idea/
+.springBeans
+.sonar4clipse
+*.sonar4clipseExternals
