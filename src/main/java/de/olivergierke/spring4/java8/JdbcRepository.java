@@ -15,14 +15,14 @@
  */
 package de.olivergierke.spring4.java8;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementSetter;
+import org.springframework.jdbc.core.RowMapper;
+
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementSetter;
-import org.springframework.jdbc.core.RowMapper;
 
 /**
  * @author Oliver Gierke
@@ -32,7 +32,7 @@ class JdbcRepository {
 	private final JdbcTemplate template;
 
 	/**
-	 * @param template
+	 * @param dataSource
 	 */
 	public JdbcRepository(DataSource dataSource) {
 		this.template = new JdbcTemplate(dataSource);
@@ -55,7 +55,7 @@ class JdbcRepository {
 			},
 			new RowMapper<Person>() {
 				@Override
-				public Person mapRow(ResultSet resultSet, int i) throws SQLException {
+				public Person mapRow(ResultSet rs, int i) throws SQLException {
 					return new Person(rs.getString(1), rs.getString(2));
 				}
 			}
