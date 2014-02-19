@@ -32,7 +32,7 @@ class JdbcRepository {
 	private final JdbcTemplate template;
 
 	/**
-	 * @param template
+	 * @param dataSource
 	 */
 	public JdbcRepository(DataSource dataSource) {
 		this.template = new JdbcTemplate(dataSource);
